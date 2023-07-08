@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RiverSentinel</title>
+
+    <!-- Styling -->
+    <link href="./css/bootstrap.css" rel="stylesheet">
+    <link href="./css/style.css" rel="stylesheet">
+</head>
+<body>
+    <div id="main" class="container">
+        <div class="row">
+            <div class="col-3 metric-container border">
+                <div class="metric-title">pH</div>
+                <div class="knob-container">
+                    <canvas id="pH"></canvas>
+                    <div class="knob-value" id="pH-value"></div>
+                </div>
+                <div class="metric-message" id="pH-message"></div>
+            </div>
+
+            <div class="col-3 metric-container border">
+                <div class="metric-title">Conductivity</div>
+                <div class="knob-container">
+                    <canvas id="conductivity"></canvas>
+                    <div class="knob-value" id="conductivity-value"></div>
+                </div>
+                <div class="metric-message" id="conductivity-message"></div>
+            </div>
+
+            <div class="col-3 metric-container border">
+                <div class="metric-title">Turbidity</div>
+                <div class="knob-container">
+                    <canvas id="turbidity"></canvas>
+                    <div class="knob-value" id="turbidity-value"></div>
+                </div>
+                <div class="metric-message" id="turbidity-message"></div>
+            </div>
+
+            <div class="col-3 metric-container border">
+                <div class="metric-title">Temperature</div>
+                <div class="knob-container">
+                    <canvas id="temperature"></canvas>
+                    <div class="knob-value" id="temperature-value"></div>
+                </div>
+                <div class="metric-message" id="temperature-message"></div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Scripts -->
+    <script src="./js/bootstrap.js"></script>
+    <script src="./js/jquery-3.6.0.min.js"></script>
+    <script src="./js/script.js"></script>
+</body>
+</html>
