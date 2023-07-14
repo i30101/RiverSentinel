@@ -6,7 +6,7 @@
 
 
 // default knob values
-const lineWidth = 80;
+const lineWidth = 160;
 const startAngle = 0.75 * Math.PI;
 const endAngle = 0.25 * Math.PI;
 const defaultColor = "#d3d3d3";
@@ -22,7 +22,7 @@ class Knob {
 
         // canvas values
         this.canvas = document.getElementById(pName);
-        this.width = this.canvas.offsetWidth * 4;
+        this.width = this.canvas.offsetWidth * 8;
         this.canvas.width = this.width;
         this.canvas.height = this.width;
         
@@ -113,4 +113,3 @@ if(testing) {
         }
     }, 500);
 }
-
