@@ -2,7 +2,7 @@ import RPi.GPIO as GPIO
 
 # Set up GPIO mode and pin number
 GPIO.setmode(GPIO.BOARD)
-pin_number = 4  # Replace with your GPIO pin number
+pin_number = 3  # Replace with your GPIO pin number
 
 # Set up GPIO pin as input
 GPIO.setup(pin_number, GPIO.IN)
