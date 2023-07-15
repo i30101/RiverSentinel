@@ -9,7 +9,7 @@ def read_temp(decimals = 1, sleeptime = 3):
 
     """Reads the temperature from a 1-wire device"""
 
-    device = glob.glob("/sys/bus/w1/devices/" + "28*")[0] + "/w1_slave"
+    device = glob.glob("/sys/bus/w1/devices/" + "28*")[1] + "/w1_slave"
     while True:
         try:
             timepoint = datetime.datetime.now()
