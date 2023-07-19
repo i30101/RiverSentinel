@@ -1,6 +1,0 @@
-i30101@raspberrypi:/var/www/html $ git push --set-upstream origin master
-Username for 'https://github.com': i30101
-Password for 'https://i30101@github.com': 
-remote: Support for password authentication was removed on August 13, 2021.
-remote: Please see https://docs.github.com/en/get-started/getting-started-with-git/about-remote-repositories#cloning-with-https-urls for information on currently recommended modes of authentication.
-fatal: Authentication failed for 'https://github.com/i30101/RiverSentinel.git/'
