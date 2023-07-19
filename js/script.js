@@ -96,20 +96,23 @@ class Metric {
 
 
 let pH = new Metric("pH", "", "#03045e", 7, 0, 14);
-let conductivity = new Metric("conductivity", "°", "#023e8a", 7, 0, 14);
-let turbidity = new Metric("turbidity", "°", "#0077b6", 7, 0, 14);
-let temperature = new Metric("temperature", "°", "#0096c7", 7, 0, 14);
+let tds = new Metric("tds", "PPM", "#023e8a", 0, 0, 500);
+let turbidity = new Metric("turbidity", "NTU", "#0077b6", 0, 0, 3000);
+let temperature = new Metric("temperature", "°", "#0096c7", 7, 0, 100);
 
-let testing = false;
-if(testing) {
-    let metrics = [pH, conductivity, turbidity, temperature];
-    let intervalID = setInterval(() => {
-        for(let metric of metrics) {
-            let randomValue = Math.floor(Math.random() * 50) / 100;
-            randomValue *= (Math.random() < 0.5 ? -1 : 1);
-            let newValue = metric.value + randomValue;
-            newValue = Math.floor(newValue * 100) / 100;
-            metric.updateValue(newValue);
-        }
-    }, 500);
+function updateReadings() {
+    fetch('/api/gpio_values')
+        .then(response => response.json())
+        .then(data => {
+            const readings = data.readings;
+            pH.updateValue(readings[0]);
+            tds.updateValue(readings[1]);
+            turbidity.updateValue(readings[2])
+            temperature.updateValue(readings[3])
+        })
+        .catch(error => console.error("Error fetching GPIO readings", error))
 }
+
+updateReadings();
+
+setInterval(updateReadings, 1000);

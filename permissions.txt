@@ -1,4 +1,0 @@
-sudo chown -R your_username:your_username /var/www/html
-sudo chown -R www-data:www-data /var/www/html
-sudo chmod -R 755 /var/www/html
-sudo setfacl -R -m u:your_username:rwx /var/www/html
