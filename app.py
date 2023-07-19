@@ -26,11 +26,11 @@ def get_serial():
     if ser.in_waiting > 0:
         line = ser.readline().decode('utf-8').rstrip()
         readings_list = [float(i) for i in line.split(", ")]
-        print(readings_list)
         Writer.append_reading(readings_list)
         readings = {}
         for i in range(4):
             readings[METRICS[i]] = readings_list[i]
+        print(readings)
         return jsonify(readings_dict = readings)
     
     return jsonify()
