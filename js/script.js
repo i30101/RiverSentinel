@@ -101,7 +101,7 @@ let turbidity = new Metric("turbidity", "NTU", "#0077b6", 0, 0, 3000);
 let temperature = new Metric("temperature", "°", "#0096c7", 7, 0, 100);
 
 function updateReadings() {
-    fetch('/api/gpio_values')
+    fetch('/api/serial')
         .then(response => response.json())
         .then(data => {
             const readings = data.readings_dict;
