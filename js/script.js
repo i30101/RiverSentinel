@@ -104,7 +104,7 @@ function updateReadings() {
     fetch('/api/gpio_values')
         .then(response => response.json())
         .then(data => {
-            const readings = data.readings;
+            const readings = data.readings_dict;
             pH.updateValue(readings[0]);
             tds.updateValue(readings[1]);
             turbidity.updateValue(readings[2])
