@@ -101,17 +101,17 @@ let turbidity = new Metric("turbidity", "NTU", "#0077b6", 0, 0, 3000);
 let temperature = new Metric("temperature", "°", "#0096c7", 7, 0, 100);
 
 function updateReadings() {
-    fetch('/api/serial')
+    fetch('https://jt914-shiny-space-spoon-rr5qj57rrxg2p665-8080.preview.app.github.dev/api/serial')
         .then(response => response.json())
         .then(data => {
-            const readings = data.readings;
+            const readings = data.readings_dict; // Updated from 'data.readings' to 'data.readings_dict'
             console.log(readings);
-            pH.updateValue(readings[0]);
-            tds.updateValue(readings[1]);
-            turbidity.updateValue(readings[2])
-            temperature.updateValue(readings[3])
+            pH.updateValue(readings.pH); // Use keys of 'readings' dictionary
+            tds.updateValue(readings.conductivity); // Updated from 'readings[1]' to 'readings.conductivity'
+            turbidity.updateValue(readings.turbidity) // Updated from 'readings[2]' to 'readings.turbidity'
+            temperature.updateValue(readings.temperature) // Updated from 'readings[3]' to 'readings.temperature'
         })
-        .catch(error => console.error("Error fetching GPIO readings", error))
+    .catch(error => console.error("Error fetching GPIO readings", error))
 }
 
 updateReadings();
