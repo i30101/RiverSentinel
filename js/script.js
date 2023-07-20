@@ -100,19 +100,31 @@ let tds = new Metric("tds", "PPM", "#023e8a", 0, 0, 500);
 let turbidity = new Metric("turbidity", "NTU", "#0077b6", 0, 0, 3000);
 let temperature = new Metric("temperature", "°", "#0096c7", 7, 0, 100);
 
-function updateReadings() {
-    fetch('/api/serial')
-        .then(response => response.json())
+// function updateReadings() {
+//     fetch('/api/serial')
+//         .then(response => response.json())
+//         .then(data => {
+//             const readings = data.readings_dict;
+//             pH.updateValue(readings[0]);
+//             tds.updateValue(readings[1]);
+//             turbidity.updateValue(readings[2])
+//             temperature.updateValue(readings[3])
+//         })
+//         .catch(error => console.error("Error fetching GPIO readings", error))
+// }
+
+// updateReadings();
+
+// setInterval(updateReadings, 1000);
+
+
+function fetchData() {
+    fetch('http://192.168.1.171/data_receiver.php')
+        .then(response => response.text())
         .then(data => {
-            const readings = data.readings_dict;
-            pH.updateValue(readings[0]);
-            tds.updateValue(readings[1]);
-            turbidity.updateValue(readings[2])
-            temperature.updateValue(readings[3])
+            console.log(data)
         })
-        .catch(error => console.error("Error fetching GPIO readings", error))
+    .catch(error => console.error("Error fetching data:", error));
 }
 
-updateReadings();
-
-setInterval(updateReadings, 1000);
+setInterval(fetchData, 1000);
