@@ -1,4 +1,1 @@
-sudo mv /etc/apt/sources.list /etc/apt/sources.list.backup
-sudo mv /etc/apt/sources.list.d/ /etc/apt/sources.list.d.backup/
-
-sudo sh -c "echo 'deb http://archive.raspbian.org/raspbian buster main contrib non-free rpi' > /etc/apt/sources.list"
+sudo apt install php php-cli php-curl php-gd php-mbstring php-mysql php-xml
