@@ -6,7 +6,7 @@ from flask import Flask, render_template, jsonify
 app = Flask(__name__)
 
 
-METRICS = ["pH", "conductivity", "turbidity", "temperature"]
+METRICS = ["pH", "TDS", "turbidity", "temperature"]
 
 
 
@@ -23,17 +23,15 @@ ser = serial.Serial('/dev/ttyACM0', 9600, timeout=1)
 def get_serial():
     ser.reset_input_buffer()
 
-    if ser.in_waiting > 0:
-        line = ser.readline().decode('utf-8').rstrip()
-        readings_list = [float(i) for i in line.split(", ")]
-        Writer.append_reading(readings_list)
-        readings = {}
-        for i in range(4):
-            readings[METRICS[i]] = readings_list[i]
-        print(readings)
-        return jsonify(readings_dict = readings)
+    line = ser.readline().decode('utf-8').rstrip()
+    readings_list = [float(i) for i in line.split(", ")]
+    print(readings_list)
+    Writer.append_reading(readings_list)
+    readings = {}
+    for i in range(4):
+        readings[METRICS[i]] = readings_list[i]
+    return jsonify(readings_dict = readings)
     
-    return jsonify()
 
 
 if __name__ == '__main__':

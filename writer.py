@@ -19,6 +19,6 @@ class Writer:
     @staticmethod
     def append_reading(new_reading):
         contents = [str(reading) for reading in new_reading]
-        with open(Writer.FILEPATH, 'a') as file:
+        with open(Writer.FILEPATH, 'a', newline='') as file:
             csv_writer = csv.writer(file)
             csv_writer.writerow(contents)
