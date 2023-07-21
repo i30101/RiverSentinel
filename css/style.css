@@ -41,10 +41,18 @@ canvas {
 
 .knob-value {
     position: absolute;
-    font-size: 30px;
+    font-size: 40px;
     font-weight: 500;
 }
 
 .metric-message {
+    text-align: center;
+}
+
+.unit {
+    font-size: 15px;
+}
+
+.knob-value, .unit {
     text-align: center;
 }

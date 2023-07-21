@@ -83,7 +83,7 @@ class Metric {
         if(newValue >= this.min && newValue <= this.max) {
             this.value = newValue;
             this.knob.draw(newValue);
-            this.knobValue.innerHTML = newValue + this.unit;
+            this.knobValue.innerHTML = newValue + `<div class='unit'>${this.unit}</div>`;
             this.message.innerHTML = "probe working";
         }else {
             this.knob.draw(this.min);
@@ -95,31 +95,14 @@ class Metric {
 }
 
 
-let pH = new Metric("pH", "", "#03045e", 7, 0, 14);
+let pH = new Metric("pH", "-log(H+)", "#03045e", 7, 0, 14);
 let tds = new Metric("tds", "PPM", "#023e8a", 0, 0, 500);
 let turbidity = new Metric("turbidity", "NTU", "#0077b6", 0, 0, 3000);
-let temperature = new Metric("temperature", "°", "#0096c7", 7, 0, 100);
-
-// function updateReadings() {
-//     fetch('/api/serial')
-//         .then(response => response.json())
-//         .then(data => {
-//             const readings = data.readings_dict;
-//             pH.updateValue(readings[0]);
-//             tds.updateValue(readings[1]);
-//             turbidity.updateValue(readings[2])
-//             temperature.updateValue(readings[3])
-//         })
-//         .catch(error => console.error("Error fetching GPIO readings", error))
-// }
-
-// updateReadings();
-
-// setInterval(updateReadings, 1000);
+let temperature = new Metric("temperature", "°F", "#0096c7", 7, 0, 100);
 
 
 function fetchData() {
-    fetch('http://192.168.1.171/data_receiver.php')
+    fetch('./data/data.json')
         .then(response => response.text())
         .then(data => {
             console.log(data)
