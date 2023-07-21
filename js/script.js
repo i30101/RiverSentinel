@@ -103,9 +103,13 @@ let temperature = new Metric("temperature", "°F", "#0096c7", 7, 0, 100);
 
 function fetchData() {
     fetch('./data/data.json')
-        .then(response => response.text())
+        .then(response => response.json())
         .then(data => {
-            console.log(data)
+            console.log(data);
+            pH.updateValue(data.pH);
+            tds.updateValue(data.TDS);
+            turbidity.updateValue(data.turbidity);
+            temperature.updateValue(data.temperature);
         })
     .catch(error => console.error("Error fetching data:", error));
 }
