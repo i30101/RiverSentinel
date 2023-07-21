@@ -11,8 +11,10 @@ ser = serial.Serial('/dev/ttyACM0', 9600, timeout=1)
 
 def get_serial():
     ser.reset_input_buffer()
-
-    line = ser.readline().decode('utf-8').rstrip()
+    
+    line = ''
+    while(line == ''):
+        line = ser.readline().decode('utf-8').rstrip()
     readings_list = [float(i) for i in line.split(", ")]
     Writer.append_reading(readings_list)
     readings = {}
@@ -28,8 +30,12 @@ while True:
     try:
         data = get_serial()
         print("RECEIVED\t", data)
-        requests.post(URL, data={'data': data})
-        time.sleep(1)
+        response = requests.post(URL, data={'data': data})
+        if response.status_code == 200:
+            print("success")
+        else:
+            print("failed to post data")
+        # time.sleep(2)
     except KeyboardInterrupt:
         break
 
